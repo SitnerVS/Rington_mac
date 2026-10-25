@@ -18,8 +18,8 @@ export function VideoLibrary({ videos, selectedVideo, onSelectVideo }: VideoLibr
             </svg>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">Video Library</h2>
-            <p className="text-sm text-gray-500">Downloaded videos will appear here</p>
+            <h2 className="text-lg font-semibold text-gray-900">Библиотека</h2>
+            <p className="text-sm text-gray-500">Скачанные видео</p>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -28,8 +28,8 @@ export function VideoLibrary({ videos, selectedVideo, onSelectVideo }: VideoLibr
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
             </svg>
           </div>
-          <p className="text-gray-400 text-sm">No videos downloaded yet</p>
-          <p className="text-gray-300 text-xs mt-1">Download a video to get started</p>
+          <p className="text-gray-400 text-sm">Пока нет загруженных видео</p>
+          <p className="text-gray-300 text-xs mt-1">Скачайте видео, чтобы начать</p>
         </div>
       </div>
     );
@@ -45,8 +45,10 @@ export function VideoLibrary({ videos, selectedVideo, onSelectVideo }: VideoLibr
             </svg>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">Video Library</h2>
-            <p className="text-sm text-gray-500">{videos.length} video{videos.length !== 1 ? 's' : ''} downloaded</p>
+            <h2 className="text-lg font-semibold text-gray-900">Библиотека</h2>
+            <p className="text-sm text-gray-500">
+              {videos.length} {videos.length === 1 ? 'видео' : videos.length < 5 ? 'видео' : 'видео'}
+            </p>
           </div>
         </div>
       </div>

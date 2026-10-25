@@ -15,11 +15,11 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#f5f5f7]">
-      {/* macOS-style title bar */}
+      {/* Заголовок окна в стиле macOS */}
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200/50">
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Traffic lights */}
+            {/* Светофор */}
             <div className="flex items-center gap-1.5">
               <div className="w-3 h-3 rounded-full bg-[#ff5f57] border border-[#e0443e]" />
               <div className="w-3 h-3 rounded-full bg-[#febc2e] border border-[#dea123]" />
@@ -39,33 +39,33 @@ function App() {
               v1.0.0
             </span>
             <span className="text-xs text-gray-400 bg-gray-100 px-2.5 py-1 rounded-full font-medium">
-              Tauri + yt-dlp + ffmpeg
+              macOS
             </span>
           </div>
         </div>
       </div>
 
-      {/* Main content */}
+      {/* Основное содержимое */}
       <div className="max-w-6xl mx-auto px-6 py-8">
-        {/* Hero section */}
+        {/* Заголовок */}
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Video to Ringtone
+            Видео в рингтон
           </h2>
           <p className="text-gray-500 text-base max-w-lg mx-auto">
-            Download videos and convert them to iPhone ringtones (.m4r). 
-            Powered by yt-dlp and ffmpeg.
+            Скачивайте видео и создавайте из них рингтоны для iPhone (.m4r).
+            Всё работает локально на вашем Mac.
           </p>
         </div>
 
-        {/* Main grid */}
+        {/* Основная сетка */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Left column - Download */}
+          {/* Левая колонка — Загрузка */}
           <div className="lg:col-span-5 space-y-6">
             <DownloadPanel onVideoDownloaded={handleVideoDownloaded} />
           </div>
 
-          {/* Middle column - Library */}
+          {/* Средняя колонка — Библиотека */}
           <div className="lg:col-span-3">
             <VideoLibrary
               videos={videos}
@@ -74,23 +74,23 @@ function App() {
             />
           </div>
 
-          {/* Right column - Convert */}
+          {/* Правая колонка — Конвертация */}
           <div className="lg:col-span-4">
             <ConvertPanel video={selectedVideo} />
           </div>
         </div>
 
-        {/* Architecture info */}
+        {/* Информация о приложении */}
         <div className="mt-10 card">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center">
               <svg className="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">Architecture</h3>
-              <p className="text-sm text-gray-500">How this app works under the hood</p>
+              <h3 className="text-lg font-semibold text-gray-900">Как это работает</h3>
+              <p className="text-sm text-gray-500">Три простых шага до готового рингтона</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -99,11 +99,11 @@ function App() {
                 <div className="w-6 h-6 bg-blue-100 rounded-md flex items-center justify-center">
                   <span className="text-xs font-bold text-blue-600">1</span>
                 </div>
-                <span className="text-sm font-semibold text-blue-900">Frontend</span>
+                <span className="text-sm font-semibold text-blue-900">Загрузка</span>
               </div>
               <p className="text-xs text-blue-700 leading-relaxed">
-                HTML/CSS/JS interface handles URL input, progress display, and file selection. 
-                Sends commands to Rust backend via Tauri IPC.
+                Вставьте ссылку на видео. Приложение скачает файл 
+                и сохранит его в формате MP4 на ваш Mac.
               </p>
             </div>
             <div className="bg-purple-50 rounded-xl p-4 border border-purple-100">
@@ -111,11 +111,11 @@ function App() {
                 <div className="w-6 h-6 bg-purple-100 rounded-md flex items-center justify-center">
                   <span className="text-xs font-bold text-purple-600">2</span>
                 </div>
-                <span className="text-sm font-semibold text-purple-900">Rust Backend</span>
+                <span className="text-sm font-semibold text-purple-900">Выбор фрагмента</span>
               </div>
               <p className="text-xs text-purple-700 leading-relaxed">
-                Tauri commands spawn yt-dlp and ffmpeg as child processes. 
-                Arguments passed safely — no shell injection risk.
+                Выберите начало и длительность рингтона — до 30 секунд. 
+                Визуальная шкала поможет точно настроить нужный фрагмент.
               </p>
             </div>
             <div className="bg-green-50 rounded-xl p-4 border border-green-100">
@@ -123,44 +123,66 @@ function App() {
                 <div className="w-6 h-6 bg-green-100 rounded-md flex items-center justify-center">
                   <span className="text-xs font-bold text-green-600">3</span>
                 </div>
-                <span className="text-sm font-semibold text-green-900">Output</span>
+                <span className="text-sm font-semibold text-green-900">Готовый рингтон</span>
               </div>
               <p className="text-xs text-green-700 leading-relaxed">
-                Final .m4r file saved to ~/Downloads/Ringtones/. 
-                Sync to iPhone via Finder or Music app.
+                Файл .m4r сохраняется в папку «Загрузки». Перенесите его 
+                на iPhone через Finder или приложение «Музыка».
               </p>
             </div>
           </div>
 
-          {/* Commands reference */}
-          <div className="mt-5 space-y-3">
-            <h4 className="text-sm font-semibold text-gray-700">Core Commands</h4>
-            <div className="bg-gray-900 rounded-xl p-4 overflow-x-auto">
-              <div className="space-y-3">
-                <div>
-                  <p className="text-xs text-gray-400 mb-1">Download (yt-dlp):</p>
-                  <code className="text-xs text-green-400 font-mono">
-                    yt-dlp --no-playlist -f bestvideo+bestaudio/best --merge-output-format mp4 -o "%(title).80s.%(ext)s" "URL"
-                  </code>
-                </div>
-                <div className="border-t border-gray-700 pt-3">
-                  <p className="text-xs text-gray-400 mb-1">Convert (ffmpeg):</p>
-                  <code className="text-xs text-green-400 font-mono">
-                    ffmpeg -y -i input.mp4 -t 30 -vn -c:a aac -b:a 128k -ar 44100 -ac 2 -movflags +faststart output.m4r
-                  </code>
-                </div>
+          {/* Требования */}
+          <div className="mt-5 p-4 bg-gray-50 rounded-xl border border-gray-100">
+            <h4 className="text-sm font-semibold text-gray-700 mb-3">Требования для рингтона iPhone</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full" />
+                <span className="text-xs text-gray-600">Формат .m4r</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full" />
+                <span className="text-xs text-gray-600">Кодек AAC</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full" />
+                <span className="text-xs text-gray-600">44.1 кГц</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full" />
+                <span className="text-xs text-gray-600">До 30 секунд</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Footer */}
+        {/* Предупреждение */}
+        <div className="mt-6 card bg-amber-50/50 border-amber-100">
+          <div className="flex gap-3">
+            <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-amber-900 mb-1">Юридическое предупреждение</h4>
+              <p className="text-xs text-amber-700 leading-relaxed">
+                Используйте приложение только для собственных видео или материалов, 
+                на которые у вас есть разрешение правообладателя. Загрузка контента 
+                из социальных сетей может нарушать правила платформы и авторские права. 
+                Если в исходном видео есть водяной знак, он останется в рингтоне.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Подвал */}
         <div className="mt-8 text-center">
           <p className="text-xs text-gray-400">
-            For personal use only. Respect copyright and platform terms of service.
+            Для личного использования. Уважайте авторские права и условия платформ.
           </p>
           <p className="text-xs text-gray-300 mt-1">
-            Built with Tauri • React • Tailwind CSS
+            Создано для macOS
           </p>
         </div>
       </div>

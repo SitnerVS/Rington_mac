@@ -15,15 +15,14 @@ export function DownloadPanel({ onVideoDownloaded }: DownloadPanelProps) {
 
   const handleDownload = () => {
     if (!url.trim()) {
-      setError('Please enter a video URL');
+      setError('Вставьте ссылку на видео');
       return;
     }
 
-    // Basic URL validation
     try {
       new URL(url);
     } catch {
-      setError('Please enter a valid URL');
+      setError('Введите корректную ссылку');
       return;
     }
 
@@ -65,7 +64,7 @@ export function DownloadPanel({ onVideoDownloaded }: DownloadPanelProps) {
       setUrl(text);
       setError('');
     } catch {
-      setError('Unable to access clipboard');
+      setError('Нет доступа к буферу обмена');
     }
   };
 
@@ -78,8 +77,8 @@ export function DownloadPanel({ onVideoDownloaded }: DownloadPanelProps) {
           </svg>
         </div>
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">Download Video</h2>
-          <p className="text-sm text-gray-500">Paste a link to download video via yt-dlp</p>
+          <h2 className="text-lg font-semibold text-gray-900">Загрузка видео</h2>
+          <p className="text-sm text-gray-500">Вставьте ссылку, чтобы скачать видео</p>
         </div>
       </div>
 
@@ -99,7 +98,7 @@ export function DownloadPanel({ onVideoDownloaded }: DownloadPanelProps) {
             className="btn-secondary whitespace-nowrap"
             disabled={isDownloading}
           >
-            Paste
+            Вставить
           </button>
         </div>
 
@@ -115,7 +114,7 @@ export function DownloadPanel({ onVideoDownloaded }: DownloadPanelProps) {
         {isDownloading && (
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
-              <span className="text-gray-500">Downloading...</span>
+              <span className="text-gray-500">Загрузка...</span>
               <span className="text-blue-600 font-medium">{Math.round(progress)}%</span>
             </div>
             <div className="progress-bar">
@@ -127,14 +126,14 @@ export function DownloadPanel({ onVideoDownloaded }: DownloadPanelProps) {
         <div className="flex gap-2">
           {isDownloading ? (
             <button onClick={handleCancel} className="btn-secondary w-full">
-              Cancel
+              Отменить
             </button>
           ) : (
             <button onClick={handleDownload} className="btn-primary w-full flex items-center justify-center gap-2">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              Download Video
+              Загрузить видео
             </button>
           )}
         </div>
@@ -142,8 +141,8 @@ export function DownloadPanel({ onVideoDownloaded }: DownloadPanelProps) {
 
       <div className="mt-4 p-3 bg-amber-50 rounded-xl border border-amber-100">
         <p className="text-xs text-amber-700 leading-relaxed">
-          <strong>Note:</strong> Only download videos you own or have permission to use. 
-          Downloaded content may contain watermarks from the source platform.
+          <strong>Важно:</strong> Скачивайте только свои видео или материалы, 
+          на которые у вас есть разрешение правообладателя.
         </p>
       </div>
     </div>

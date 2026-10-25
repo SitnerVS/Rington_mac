@@ -1,6 +1,6 @@
 import { VideoItem, TrimSettings } from './types';
 
-// Simulate yt-dlp download process
+// Симуляция процесса загрузки видео
 export function simulateDownload(
   url: string,
   onProgress: (progress: number) => void,
@@ -11,11 +11,11 @@ export function simulateDownload(
   let progress = 0;
 
   const titles = [
-    'Amazing Sunset Timelapse',
-    'City Night Lights 4K',
-    'Ocean Waves Relaxation',
-    'Mountain Adventure',
-    'Street Photography Walk',
+    'Закат над морем',
+    'Ночные огни города',
+    'Морские волны',
+    'Горное приключение',
+    'Прогулка по городу',
   ];
 
   const randomTitle = titles[Math.floor(Math.random() * titles.length)];
@@ -26,7 +26,6 @@ export function simulateDownload(
       return;
     }
 
-    // Simulate non-linear progress
     const increment = Math.random() * 8 + 2;
     progress = Math.min(progress + increment, 100);
     onProgress(progress);
@@ -39,7 +38,7 @@ export function simulateDownload(
         url,
         filename: `${randomTitle.replace(/\s+/g, '_').toLowerCase()}.mp4`,
         duration: Math.floor(Math.random() * 180) + 30,
-        size: `${(Math.random() * 50 + 5).toFixed(1)} MB`,
+        size: `${(Math.random() * 50 + 5).toFixed(1)} МБ`,
         downloadedAt: new Date(),
         status: 'completed',
         progress: 100,
@@ -51,11 +50,11 @@ export function simulateDownload(
   return () => {
     cancelled = true;
     clearInterval(interval);
-    onError('Download cancelled');
+    onError('Загрузка отменена');
   };
 }
 
-// Simulate ffmpeg conversion process
+// Симуляция процесса конвертации
 export function simulateConversion(
   video: VideoItem,
   trim: TrimSettings,
@@ -66,14 +65,13 @@ export function simulateConversion(
   let cancelled = false;
   let progress = 0;
 
-  // Validate trim settings
   if (trim.duration > 30) {
-    onError('Duration must not exceed 30 seconds for .m4r format');
+    onError('Длительность не должна превышать 30 секунд');
     return () => {};
   }
 
   if (trim.startTime + trim.duration > video.duration) {
-    onError('Trim range exceeds video duration');
+    onError('Выбранный диапазон выходит за пределы длительности видео');
     return () => {};
   }
 
@@ -89,7 +87,7 @@ export function simulateConversion(
 
     if (progress >= 100) {
       clearInterval(interval);
-      const outputPath = `~/Downloads/Ringtones/${video.title.replace(/\s+/g, '_').toLowerCase()}.m4r`;
+      const outputPath = `~/Загрузки/Рингтоны/${video.title.replace(/\s+/g, '_')}.m4r`;
       onComplete(outputPath);
     }
   }, 200);
@@ -97,21 +95,13 @@ export function simulateConversion(
   return () => {
     cancelled = true;
     clearInterval(interval);
-    onError('Conversion cancelled');
+    onError('Конвертация отменена');
   };
 }
 
-// Format seconds to mm:ss
+// Форматирование секунд в мм:сс
 export function formatTime(seconds: number): string {
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-}
-
-// Format time for ffmpeg (hh:mm:ss)
-export function formatFFmpegTime(seconds: number): string {
-  const hrs = Math.floor(seconds / 3600);
-  const mins = Math.floor((seconds % 3600) / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
